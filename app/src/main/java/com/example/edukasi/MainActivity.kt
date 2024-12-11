@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.textViewHelloKotlin)
         textView.setOnClickListener {
             // Pindah ke PersegiActivity
-            val intent = Intent(this, PersegiActivity::class.java)
+            val intent = Intent(this, BangunDatarActivity::class.java)
             startActivity(intent)
         }
     }

@@ -5,12 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textViewHelloKotlin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:text="Hello Kotlin!"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

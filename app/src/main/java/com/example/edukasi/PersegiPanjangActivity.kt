@@ -3,56 +3,82 @@ package com.example.edukasi
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import kotlin.random.Random
 
-class PersegiActivity : AppCompatActivity() {
+class PersegiPanjangActivity : AppCompatActivity() {
+
+    private lateinit var editTextPanjang: EditText
+    private lateinit var editTextLebar: EditText
+    private lateinit var buttonHitung: Button
+    private lateinit var textViewHasil: TextView
+    private lateinit var buttonSoal: Button
 
     private var currentQuestionIndex = 0
     private var score = 0
     private val totalQuestions = 5 // Total pertanyaan yang ingin Anda buat
-    private val questions = mutableListOf<Pair<String, Int>>() // List untuk menyimpan pertanyaan
+    private val questions = mutableListOf<Pair<String, Double>>() // List untuk menyimpan pertanyaan
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_persegi)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_persegi_panjang)
 
         val imageView = findViewById<ImageView>(R.id.arrow_left)
         imageView.setOnClickListener {
             finish() // Menutup activity saat ini dan kembali ke halaman sebelumnya
         }
 
-        val editTextSisi = findViewById<EditText>(R.id.editTextSisi)
-        val buttonHitung = findViewById<Button>(R.id.buttonHitung)
-        val textViewHasil = findViewById<TextView>(R.id.textViewHasil)
-        val buttonSoal = findViewById<Button>(R.id.buttonSoal)
+        // Menghubungkan View dengan variabel
+        editTextPanjang = findViewById(R.id.editTextPanjang)
+        editTextLebar = findViewById(R.id.editTextLebar)
+        buttonHitung = findViewById(R.id.buttonHitung)
+        textViewHasil = findViewById(R.id.textViewHasil)
+        buttonSoal = findViewById(R.id.buttonSoal)
 
-        // Menghitung luas persegi
+        // Mengatur listener untuk tombol hitung
         buttonHitung.setOnClickListener {
-            val sisiInput = editTextSisi.text.toString()
-            if (sisiInput.isNotEmpty()) {
-                val sisi = sisiInput.toDouble()
-                val luas = sisi * sisi
-                textViewHasil.text = "Hasil: Luas persegi adalah $luas"
-            } else {
-                Toast.makeText(this, "Masukkan panjang sisi!", Toast.LENGTH_SHORT).show()
-            }
+            hitungLuas()
         }
 
-        // Membuka soal latihan
+        // Mengatur listener untuk tombol soal
         buttonSoal.setOnClickListener {
             generateQuestions()
             currentQuestionIndex = 0 // Reset index untuk pertanyaan
             showQuestion()
+        }
+
+        // Menangani window insets untuk edge-to-edge
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+    }
+
+    private fun hitungLuas() {
+        val panjang = editTextPanjang.text.toString().toDoubleOrNull()
+        val lebar = editTextLebar.text.toString().toDoubleOrNull()
+
+        if (panjang != null && lebar != null) {
+            val luas = panjang * lebar
+            textViewHasil.text = "Hasil: $luas"
+        } else {
+            textViewHasil.text = "Masukkan panjang dan lebar yang valid"
         }
     }
 
     private fun generateQuestions() {
         questions.clear() // Bersihkan daftar pertanyaan
         for (i in 1..totalQuestions) {
-            val sisi = Random.nextInt(1, 21) // Angka acak antara 1 hingga 10
-            questions.add(Pair("Jika sisi sebuah persegi adalah $sisi, berapakah luasnya?", sisi * sisi))
+            val panjang = Random.nextInt(1, 21) // Angka acak untuk panjang
+            val lebar = Random.nextInt(1, 21) // Angka acak untuk lebar
+            val area = panjang * lebar // Luas
+            questions.add(Pair("Jika panjang persegi panjang adalah $panjang cm dan lebar adalah $lebar cm, berapakah luasnya?", area.toDouble()))
         }
     }
 
@@ -70,7 +96,7 @@ class PersegiActivity : AppCompatActivity() {
 
             builder.setPositiveButton("Cek Jawaban") { _, _ ->
                 val jawabanUser = input.text.toString()
-                if (jawabanUser.isNotEmpty() && jawabanUser.toIntOrNull() == jawabanBenar) {
+                if (jawabanUser.isNotEmpty() && jawabanUser.toDoubleOrNull() == jawabanBenar) {
                     Toast.makeText(this, "Jawaban benar!", Toast.LENGTH_SHORT).show()
                     score += 20
                 } else {

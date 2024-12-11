@@ -6,33 +6,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".PersegiActivity">
+    tools:context=".LingkaranActivity">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="189dp"
-        android:layout_height="214dp"
+        android:id="@+id/imageViewLingkaran"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/persegi" />
+        app:srcCompat="@drawable/lingkaran" /> <!-- Ganti 'lingkaran' dengan nama gambar Anda -->
 
     <EditText
-        android:id="@+id/editTextSisi"
+        android:id="@+id/editTextJariJari"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="casual"
-        android:hint="Masukkan panjang sisi"
+        android:hint="Masukkan jari-jari"
         android:inputType="numberDecimal"
-        android:textColor="#000000"
-        android:textColorHighlight="#000000"
-        android:textColorHint="#373737"
+        android:textColorHint="#232323"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@id/imageViewLingkaran" />
 
     <Button
         android:id="@+id/buttonHitung"
@@ -40,11 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="casual"
-        android:text="Hitung"
+        android:text="Hitung Luas"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextSisi" />
+        app:layout_constraintTop_toBottomOf="@id/editTextJariJari" />
 
     <TextView
         android:id="@+id/textViewHasil"
@@ -54,6 +52,7 @@
         android:fontFamily="casual"
         android:text="Hasil: "
         android:textColor="#000000"
+        android:textColorHint="#000000"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="casual"
-        android:text="Kerjakan Soal"
+        android:text="Soal Latihan"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,16 +82,16 @@
         app:srcCompat="@drawable/arrow_left" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewRumus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:fontFamily="casual"
-        android:text="Rumus Persegi : Luas = Sisi x Sisi"
+        android:text="Rumus Lingkaran: Luas = π x r²"
         android:textColor="#000000"
+        android:textColorHint="#000000"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextSisi"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewLingkaran" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,40 +3,53 @@ package com.example.edukasi
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import kotlin.random.Random
 
-class PersegiActivity : AppCompatActivity() {
+class SegitigaActivity : AppCompatActivity() {
 
     private var currentQuestionIndex = 0
     private var score = 0
     private val totalQuestions = 5 // Total pertanyaan yang ingin Anda buat
-    private val questions = mutableListOf<Pair<String, Int>>() // List untuk menyimpan pertanyaan
+    private val questions = mutableListOf<Pair<String, Double>>() // List untuk menyimpan pertanyaan
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_persegi)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_segitiga)
 
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
         val imageView = findViewById<ImageView>(R.id.arrow_left)
         imageView.setOnClickListener {
             finish() // Menutup activity saat ini dan kembali ke halaman sebelumnya
         }
 
-        val editTextSisi = findViewById<EditText>(R.id.editTextSisi)
+
+        val editTextAlas = findViewById<EditText>(R.id.editTextAlas)
+        val editTextTinggi = findViewById<EditText>(R.id.editTextTinggi)
         val buttonHitung = findViewById<Button>(R.id.buttonHitung)
         val textViewHasil = findViewById<TextView>(R.id.textViewHasil)
         val buttonSoal = findViewById<Button>(R.id.buttonSoal)
 
-        // Menghitung luas persegi
+        // Menghitung luas segitiga
         buttonHitung.setOnClickListener {
-            val sisiInput = editTextSisi.text.toString()
-            if (sisiInput.isNotEmpty()) {
-                val sisi = sisiInput.toDouble()
-                val luas = sisi * sisi
-                textViewHasil.text = "Hasil: Luas persegi adalah $luas"
+            val alasInput = editTextAlas.text.toString()
+            val tinggiInput = editTextTinggi.text.toString()
+            if (alasInput.isNotEmpty() && tinggiInput.isNotEmpty()) {
+                val alas = alasInput.toDouble()
+                val tinggi = tinggiInput.toDouble()
+                val luas = 0.5 * alas * tinggi
+                textViewHasil.text = "Hasil: Luas segitiga adalah $luas"
             } else {
-                Toast.makeText(this, "Masukkan panjang sisi!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Masukkan panjang alas dan tinggi!", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -51,8 +64,10 @@ class PersegiActivity : AppCompatActivity() {
     private fun generateQuestions() {
         questions.clear() // Bersihkan daftar pertanyaan
         for (i in 1..totalQuestions) {
-            val sisi = Random.nextInt(1, 21) // Angka acak antara 1 hingga 10
-            questions.add(Pair("Jika sisi sebuah persegi adalah $sisi, berapakah luasnya?", sisi * sisi))
+            val alas = Random.nextInt(1, 11) // Angka acak antara 1 hingga 10 untuk alas
+            val tinggi = Random.nextInt(1, 11) // Angka acak antara 1 hingga 10 untuk tinggi
+            val luasBenar = 0.5 * alas * tinggi // Hitung luas segitiga
+            questions.add(Pair("Jika alas segitiga adalah $alas dan tinggi segitiga adalah $tinggi, berapakah luasnya?", luasBenar))
         }
     }
 
@@ -70,11 +85,11 @@ class PersegiActivity : AppCompatActivity() {
 
             builder.setPositiveButton("Cek Jawaban") { _, _ ->
                 val jawabanUser = input.text.toString()
-                if (jawabanUser.isNotEmpty() && jawabanUser.toIntOrNull() == jawabanBenar) {
+                if (jawabanUser.isNotEmpty() && jawabanUser.toDoubleOrNull() == jawabanBenar) {
                     Toast.makeText(this, "Jawaban benar!", Toast.LENGTH_SHORT).show()
-                    score += 20
+                    score += 10
                 } else {
-                    Toast.makeText(this, "Jawaban salah! Jawaban yang benar adalah $jawabanBenar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Jawaban salah! Jawaban yang benar adalah ${jawabanBenar.toInt()}", Toast.LENGTH_SHORT).show()
                 }
                 currentQuestionIndex++
                 showQuestion()
