@@ -11,12 +11,12 @@
     <ImageView
         android:id="@+id/imageViewPersegiPanjang"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/persegi_panjang" />
+        app:srcCompat="@drawable/persegi_panjang_icon" />
 
     <EditText
         android:id="@+id/editTextPanjang"
