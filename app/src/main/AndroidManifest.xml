@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Edukasi"
         tools:targetApi="31">
         <activity
+            android:name=".KerucutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TabungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BalokActivity"
+            android:exported="false" />
+        <activity
+            android:name=".KubusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BangunRuangActivity"
+            android:exported="false" />
+        <activity
             android:name=".BangunDatarActivity"
             android:exported="false" />
         <activity

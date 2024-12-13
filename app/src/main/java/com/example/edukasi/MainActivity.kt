@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val imageView = findViewById<ImageView>(R.id.bangunDatar)
-        imageView.setOnClickListener {
+        val bangunDatarImageView = findViewById<ImageView>(R.id.bangunDatar)
+        bangunDatarImageView.setOnClickListener {
             // Pindah ke PersegiActivity
             val intent = Intent(this, BangunDatarActivity::class.java)
             startActivity(intent)
         }
 
         //Page untuk ke bangun ruang
-//        val imageView = findViewById<ImageView>(R.id.bangunRuang)
-//        imageView.setOnClickListener {
-//            // Pindah ke PersegiActivity
-//            val intent = Intent(this, BangunDatarActivity::class.java)
-//            startActivity(intent)
-//        }
+        val imageView = findViewById<ImageView>(R.id.bangunRuang)
+        imageView.setOnClickListener {
+
+            val intent = Intent(this, BangunRuangActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
