@@ -5,19 +5,63 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/textViewHelloKotlin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:text="Hello Kotlin!"
+        android:layout_marginTop="76dp"
+        android:background="#00FFFFFF"
+        android:fontFamily="casual"
+        android:text="Mari Belajar Geometri Bersama"
+        android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bangunRuang"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/bangun_ruang" />
+
+    <ImageView
+        android:id="@+id/bangunDatar"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bangunRuang"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/bangun_datar" />
+
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="casual"
+        android:text="Kembangkan skill mu"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHelloKotlin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

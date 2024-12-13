@@ -2,6 +2,7 @@ package com.example.edukasi
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -26,5 +27,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, BangunDatarActivity::class.java)
             startActivity(intent)
         }
+
+        val imageView = findViewById<ImageView>(R.id.bangunDatar)
+        imageView.setOnClickListener {
+            // Pindah ke PersegiActivity
+            val intent = Intent(this, BangunDatarActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Page untuk ke bangun ruang
+//        val imageView = findViewById<ImageView>(R.id.bangunRuang)
+//        imageView.setOnClickListener {
+//            // Pindah ke PersegiActivity
+//            val intent = Intent(this, BangunDatarActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 }
